@@ -1,148 +1,171 @@
 /* Для примера, скрываем/отображаем содержимое */
-  .none { display: none; }
-  .active { display: block; }
-  
- 
-  
-  html, body{
-    height: 100%; margin: 0;
-    padding: 0;
-	overflow: hidden;
-  }
-  body {
-   
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url("https://blisch.by/wp-content/uploads/2024/06/collage15.jpg") no-repeat center center ;
-    background-size: cover;
-    font-family: "Montserrat", sans-serif;
-  }
+.none {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("https://blisch.by/wp-content/uploads/2024/06/collage15.jpg") no-repeat center center;
+  background-size: cover;
+  font-family: "Montserrat", sans-serif;
+}
+
 body #photo_switch {
-	display: none;
+  display: none;
 }
-  .container {
-    width: 30vw; /* Размер области */
-    height: 30vw;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-    border-radius: 6px;
-    box-shadow: 0 0 25px 10px #2524246b;
-  }
 
-  /* Основное изображение - делаем его двойным, внутри него слой для переключения */
-  .image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 6px;
-  }
+.container {
+  width: 30vw;
+  /* Размер области */
+  height: 30vw;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: 0 0 25px 10px #2524246b;
+}
+
+/* Основное изображение - делаем его двойным, внутри него слой для переключения */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
 h3::after {
-    content: "";
-    position: relative;
-    width: 100%;
-    height: 100px;
-    bottom: 0;
-    left: 0;
-    background: url(../media/img/strong3.svg) no-repeat center;
-    background-size: 100%;
-    z-index: 6;
-    display: block;
+  content: "";
+  position: relative;
+  width: 100%;
+  height: 100px;
+  bottom: 0;
+  left: 0;
+  background: url(../media/img/strong3.svg) no-repeat center;
+  background-size: 100%;
+  z-index: 6;
+  display: block;
 }
-  /* Обе картинки - накладываются друг на друга, показываем одну */
-  #image1, #image2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-    border-radius: 6px;
-  }
 
-  /* Активное изображение видно */
-  #image1.active, #image2.active {
-    display: block;
-	animation: visibility 1s;
-	opacity: 1;	
-  }
+/* Обе картинки - накладываются друг на друга, показываем одну */
+#image1,
+#image2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  border-radius: 6px;
+}
+
+/* Активное изображение видно */
+#image1.active,
+#image2.active {
+  display: block;
+  animation: visibility 1s;
+  opacity: 1;
+}
 
 
-  /* Контрольные кнопки */
-  button {
-    margin: 10px;
-  }
+/* Контрольные кнопки */
+button {
+  margin: 10px;
+}
 
-  /* Круг маски */
-  #mask {
-    position: absolute;
-    width: 10vw;
-    height: 10vw;
-    border-radius: 50%;
-    overflow: hidden;
-    display: none; /* изначально скрыт */
-    pointer-events: none; 
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    z-index: 10;
-  }
+/* Круг маски */
+#mask {
+  position: absolute;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  overflow: hidden;
+  display: none;
+  /* изначально скрыт */
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
 
-  /* Внутри маски — текущая выбранная картинка */
-  #mask img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 32vw;
-    height: 32vw;
-    object-fit: cover;
-  }
+/* Внутри маски — текущая выбранная картинка */
+#mask img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32vw;
+  height: 32vw;
+  object-fit: cover;
+}
 
-  .wrapp{
-    width: 75%;
-    margin: auto; 
-    padding: 20px;
-    background-color: #EED9AA;
-	display: flex; 
-justify-content: space-between;	
-	border-radius: 6px;
+.wrapp {
+  width: 75%;
+  margin: auto;
+  padding: 20px;
+  background-color: #EED9AA;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 6px;
   background-image: url(../media/img/fon.jpg);
-  }
-  .wrapp header{
+}
+
+.wrapp header {
   display: flex;
   align-items: center;
   width: 40%;
-  }
-  .wrapper{
+}
+
+.wrapper {
   width: 60%;
-  }
-   h3 {
-    font-size: 3.0vw;
-    text-align: center;
-    margin:0 0 20px 0;
-    padding-top: 30px;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    color: #564343;
-	text-transform: uppercase;
 }
-footer{
+
+h3 {
+  font-size: 3.0vw;
+  text-align: center;
+  margin: auto;
+  /*gjvtyznm gjnjv*/
+  padding-top: 30px;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: #564343;
+  text-transform: uppercase;
+}
+
+footer {
   display: flex;
   justify-content: center;
   position: relative;
 }
-footer .wrapper_button{
+
+footer .wrapper_button {
   display: flex;
   justify-content: center;
   position: relative;
 }
+
 footer button,
 footer a#back,
-footer a#urlMap{
+footer a#urlMap {
   padding: 10px;
   margin-top: 50px;
   border-radius: 6px;
@@ -152,67 +175,72 @@ footer a#urlMap{
   transition: 0.5s;
   background: transparent;
 }
+
 footer button:hover,
- button.active{
+button.active {
   color: #EED9AA;
   background-color: #564343;
   transition: 0.5s;
 }
+
 footer button:hover,
-footer a:hover{
- box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+footer a:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-footer a#back{
- width: 5vw;
- height: 5vw;
- border-radius: 50%;
- background: url("../media/img/home.svg") no-repeat center;
- background-size: 80%;
- position: absolute;
- right: 1vw;
- bottom: 1vw;
- transition: 1s;
- padding: 5px;
-  transition: 0.5s;
-}
-footer a#urlMap{
- width: 5vw;
- height: 5vw;
- border-radius: 50%;
- background: url("../media/icons/icon_map.svg") no-repeat center;
- background-size: 100%;
- position: absolute;
- right: 0.01em;
- bottom: 6em;
- transition: 1s;
- padding: 5px;
+
+footer a#back {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  background: url("../media/img/home.svg") no-repeat center;
+  background-size: 80%;
+  position: absolute;
+  right: 1vw;
+  bottom: 1vw;
+  transition: 1s;
+  padding: 5px;
   transition: 0.5s;
 }
 
-footer a#back:hover{
-background:#564343 url("../media/img/home_2.svg") no-repeat center;
- background-size: 80%;
- box-shadow: 0 0 10px rgba(0,0,0,0.5);
- transition: 0.5s;
+footer a#urlMap {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  background: url("../media/icons/icon_map.svg") no-repeat center;
+  background-size: 100%;
+  position: absolute;
+  right: 0.01em;
+  bottom: 6em;
+  transition: 1s;
+  padding: 5px;
+  transition: 0.5s;
 }
-.range{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+
+footer a#back:hover {
+  background: #564343 url("../media/img/home_2.svg") no-repeat center;
+  background-size: 80%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
 }
+
+.range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Основная часть - убираем стандартное оформление */
 #sizeRange {
-  -webkit-appearance: none; /* Chrome, Safari */
+  -webkit-appearance: none;
+  /* Chrome, Safari */
   width: 100%;
   height: 8px;
-  background: linear-gradient(
-    to right,
-    #564343 0%,
-    #564343 var(--value-percent),
-    #ccc var(--value-percent),
-    #ccc 100%
-  );
+  background: linear-gradient(to right,
+      #564343 0%,
+      #564343 var(--value-percent),
+      #ccc var(--value-percent),
+      #ccc 100%);
   border-radius: 4px;
   /* Не забудьте задать переменную --value-percent динамически через JS */
 }
@@ -223,7 +251,8 @@ background:#564343 url("../media/img/home_2.svg") no-repeat center;
   appearance: none;
   width: 20px;
   height: 20px;
-  background-color: #564343; /* цвет кружочка */
+  background-color: #564343;
+  /* цвет кружочка */
   border-radius: 50%;
   cursor: pointer;
   border: none;
@@ -247,65 +276,77 @@ background:#564343 url("../media/img/home_2.svg") no-repeat center;
   border-radius: 50%;
   cursor: pointer;
 }
+
 @media (max-width: 1000px) {
   body {
     background: url(../media/img/fon.jpg) no-repeat center center;
-    background-size: cover; 
-}
-h3 {
-    font-size: 7.5vw;
-}
+    background-size: cover;
+  }
 
-.wrapp header{
-  width: 100%;
-}
+  h3 {
+    font-size: 7.5vw;
+  }
+
+  .wrapp header {
+    width: 100%;
+  }
+
   .wrapp {
     width: 85%;
     background-color: #EED9AA;
-   flex-direction: column;
-   align-items: center;
-   background-image: none;
-}
-.wrapp header {
+    flex-direction: column;
+    align-items: center;
+    background-image: none;
+  }
+
+  .wrapp header {
     justify-content: center;
-}
-footer{
-  flex-direction: column;
-}
-footer button,
- footer a#back,
+  }
+
+  footer {
+    flex-direction: column;
+  }
+
+  footer button,
+  footer a#back,
   footer a#urlMap {
-    font-size: 40px;  
-}
-.range {
+    font-size: 40px;
+  }
+
+  .range {
     display: none;
-}
-.click{
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-footer a#back,
- footer a#urlMap{
+  }
+
+  .click {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  footer a#back,
+  footer a#urlMap {
     position: relative;
     display: block;
     right: 0;
     bottom: 0;
-    margin:  20px;
+    margin: 20px;
     width: 15vw;
     height: 15vw;
-}
-.container {
+  }
+
+  .container {
     width: 80vw;
     height: 80vw;
-    
-}
-.wrapper {
+
+  }
+
+  .wrapper {
     width: 95%;
-}
-body #photo_switch {
-	display: none;
+  }
+
+  body #photo_switch {
+    display: none;
     width: 150px;
     height: 300px;
     z-index: 100;
@@ -316,51 +357,57 @@ body #photo_switch {
     transition: 0.5s;
     transform: scale(1);
     box-sizing: border-box;
-}
-body #photo_switch.photo_switch_upp {
+  }
+
+  body #photo_switch.photo_switch_upp {
     background: url("../media/img/photo_switch3.svg") no-repeat center;
     background-size: 100%;
     transform: rotate(-180deg);
-	transition: .5s;
-}
-body #photo_switch.photo_switch_upp:hover{
-	transform: rotate(-230deg);
-	transition: .5s;
-	filter: drop-shadow(0 0 3px #564343);
-}
+    transition: .5s;
+  }
+
+  body #photo_switch.photo_switch_upp:hover {
+    transform: rotate(-230deg);
+    transition: .5s;
+    filter: drop-shadow(0 0 3px #564343);
+  }
 }
 
 .image-wrapper1,
-  .image-wrapper2{
+.image-wrapper2 {
   display: none;
-	position: relative;
-	width: 300px;
-	height: 300px;
-  }
-  .image-wrapper1.active,
-  .image-wrapper2.active{
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.image-wrapper1.active,
+.image-wrapper2.active {
   display: block;
-  }
-  #video1,#video2{
+}
+
+#video1,
+#video2 {
   display: none;
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  }
-  #video1.active,#video2.active{
+}
+
+#video1.active,
+#video2.active {
   display: block;
-  }
-   
-    @media screen and (max-width: 767px) {
-
-}
-@keyframes visibility{
-   0% {
-   opacity: 0.5;
-  }
-  100%{
-   opacity: 1;
-  }
 }
 
+@media screen and (max-width: 767px) {}
+
+@keyframes visibility {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

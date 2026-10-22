@@ -1,5 +1,3 @@
-
-
 const nameStreet = {
   1: 'Проспект Ленина',
   2: 'Улица Советская',
@@ -16,4 +14,3 @@ const urlStreet = {
   5: 'https://yandex.by/maps/-/CLs7jTiM',
   6: 'https://yandex.by/maps/-/CLs7nI85'
 }
-

@@ -314,6 +314,3 @@ video2.classList.add('active');
 });
 
  }
-
-
-

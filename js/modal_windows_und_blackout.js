@@ -1,185 +1,174 @@
+// ============ ОБЩАЯ ЧАСТЬ: оверлей с фото/видео ============
 
-document.querySelectorAll(".clickable").forEach(Element => Element.onclick = () => {
-    document.querySelector("#blackout").classList.toggle("active");
-    document.querySelector("#cross_blackout").classList.toggle("active");
-    document.querySelector("#H5_content").innerHTML = Element.getAttribute("data-place");
-    document.querySelector(`#${Element.getAttribute("data-place").split(" ").join("")}`).classList.add("active"); 
-    // document.querySelector("#NEW_photography").setAttribute(`src`, `../media/img/NEW/${Element.getAttribute("data-place")}_new.jpg`);
-    // document.querySelector("#OLD_photography").setAttribute(`src`, `../media/img/OLD/${Element.getAttribute("data-place")}_old.jpg`);
-    document.querySelector("#NEW_photography_video source").setAttribute(`src`, `media/img/NEW/${Element.getAttribute("data-place")}_new.mp4`);
-	document.querySelector("#OLD_photography_video source").setAttribute(`src`, `media/img/OLD/${Element.getAttribute("data-place")}_old.mp4`);
-    document.querySelector("#body").style.overflow = "hidden";
-    
-    //
+const blackout        = document.querySelector("#blackout");
+const crossBlackout   = document.querySelector("#cross_blackout");
+const bodyEl          = document.querySelector("#body");
+const h5Content       = document.querySelector("#H5_content");
 
-	
-	function removeNew(){
-   const place = Element.getAttribute('data-place'); 
-   console.log(place+'1');
-   let div=document.querySelector("#NEW_photography");
-  // Установка фона
-  div.style.backgroundImage = 'url("media/img/NEW/'+place+'_new.jpg")';
-  div.style.backgroundSize = 'cover'; // чтобы фото покрывало
-  div.style.backgroundPosition = 'center top'; // центрировать
-}
-    removeNew();
-    //
-     function removeOld(){
-   const place = Element.getAttribute('data-place'); 
-console.log(place+'1');
-let div=document.querySelector("#OLD_photography");
-  // Установка фона
-  div.style.backgroundImage = 'url("media/img/OLD/'+place+'_old.jpg")';
-  div.style.backgroundSize = 'cover'; // чтобы фото покрывало
-  div.style.backgroundPosition = 'center top'; // центрировать
-}
-    removeOld();
+const newPhotoDiv     = document.getElementById('NEW_photo');
+const oldPhotoDiv     = document.getElementById('OLD_photo');
+const photoSwitch     = document.getElementById('photo_switch');
+
+const newPhoto        = document.getElementById('NEW_photography');
+const oldPhoto        = document.getElementById('OLD_photography');
+const videoNEW        = document.getElementById('NEW_photography_video');
+const videoOLD        = document.getElementById('OLD_photography_video');
+
+// -------- клики по карточкам (.clickable) --------
+document.querySelectorAll(".clickable").forEach(el => {
+    el.onclick = () => {
+        if (!blackout || !h5Content) return;
+
+        blackout.classList.toggle("active");
+        if (crossBlackout) crossBlackout.classList.toggle("active");
+
+        h5Content.innerHTML = el.getAttribute("data-place");
+
+        const place = el.getAttribute("data-place");
+        const id = place.split(" ").join("");
+        const textBlock = document.getElementById(id);
+        if (textBlock) textBlock.classList.add("active");
+
+        // видео источники
+        const newSrc = document.querySelector("#NEW_photography_video source");
+        const oldSrc = document.querySelector("#OLD_photography_video source");
+        if (newSrc) newSrc.setAttribute("src", `../media/img/NEW/${place}_new.mp4`);
+        if (oldSrc) oldSrc.setAttribute("src", `../media/img/OLD/${place}_old.mp4`);
+
+        if (bodyEl) bodyEl.style.overflow = "hidden";
+
+        // фоновые картинки
+        if (newPhoto) {
+            newPhoto.style.backgroundImage = `url("../media/img/NEW/${place}_new.jpg")`;
+            newPhoto.style.backgroundSize = "cover";
+            newPhoto.style.backgroundPosition = "center top";
+        }
+        if (oldPhoto) {
+            oldPhoto.style.backgroundImage = `url("../media/img/OLD/${place}_old.jpg")`;
+            oldPhoto.style.backgroundSize = "cover";
+            oldPhoto.style.backgroundPosition = "center top";
+        }
+    };
 });
 
-const videoOLD = document.getElementById('OLD_photography_video');
-const imgOLD = document.getElementById('OLD_photography');
-// Установка источника и подготовка видео
-imgOLD.addEventListener('click', () => {
-  imgOLD.style.display='none';
-  // Обновите источник, если нужно
-  const sourceOLD = videoOLD.querySelector('source');
-  videoOLD.load();
-  
-
-  // Воспроизведение только после клика
-  videoOLD.play().catch(error => {
-    console.error('Ошибка при запуске видео:', error);
-  });
-});
-// После окончания видео — показываем кнопку снова
-videoOLD.addEventListener('ended', () => {
-  imgOLD.style.display = 'block'; // или 'block', в зависимости от вашего дизайна
-});
-//**new
-const videoNEW = document.getElementById('NEW_photography_video');
-const imgNEW = document.getElementById('NEW_photography');
-// Установка источника и подготовка видео
-imgNEW.addEventListener('click', () => {
-  imgNEW.style.display='none';
-  // Обновите источник, если нужно
-  const sourceNEW = videoNEW.querySelector('source');
-  videoNEW.load();
-  
-
-  // Воспроизведение только после клика
-  videoNEW.play().catch(error => {
-    console.error('Ошибка при запуске видео:', error);
-  });
-});
-// После окончания видео — показываем кнопку снова
-videoNEW.addEventListener('ended', () => {
-  imgNEW.style.display = 'block'; // или 'block', в зависимости от вашего дизайна
-});
-//**
-document.querySelector("#cross_blackout").onclick = () => {
-    document.querySelector("#blackout").classList.toggle("active");
-    document.querySelector("#cross_blackout").classList.toggle("active");
-    document.querySelectorAll(".text_content").forEach(el => el.classList.remove("active"));
-    document.querySelector("#body").style.overflow = "visible";
+// -------- клик по старому фото → запуск видео --------
+if (oldPhoto && videoOLD) {
+    oldPhoto.addEventListener('click', () => {
+        oldPhoto.style.display = 'none';
+        videoOLD.load();
+        videoOLD.play().catch(e => console.error('OLD video:', e));
+    });
+    videoOLD.addEventListener('ended', () => {
+        oldPhoto.style.display = 'block';
+    });
 }
 
-document.querySelectorAll(".clickable2").forEach(Element => Element.onclick = () => {
-    document.querySelector("#blackout2").classList.toggle("active");
-    document.querySelector("#cross_blackout2").classList.toggle("active");
-    document.querySelector("#H5_content").innerHTML = Element.getAttribute("data-place");
-    document.querySelector(`#${Element.getAttribute("data-place").split(" ").join("")}`).classList.add("active"); 
-   
-   // document.querySelector("#OLD_photography2").setAttribute(`src`, `media/img/OLD/${Element.getAttribute("data-place")}_old.jpg`);
-    document.querySelector("#body").style.overflow = "hidden";
-});
-//
-
-const newPhotoDiv = document.getElementById('NEW_photo');
-const oldPhotoDiv = document.getElementById('OLD_photo');
-const photoSwitch = document.getElementById('photo_switch');
-document.addEventListener('DOMContentLoaded', () => {
-    oldPhotoDiv.style.zIndex = '1000';
-  });
-photoSwitch.onclick = () => {
- 
-	 if (window.getComputedStyle(newPhotoDiv).zIndex === '1000') {
-    newPhotoDiv.style.zIndex = '0';
-    oldPhotoDiv.style.zIndex = '1000';
-    photoSwitch.classList.remove('photo_switch_down');
-    photoSwitch.classList.add('photo_switch_upp');
-    
-
-
-  } else {
-    newPhotoDiv.style.zIndex = '1000';
-    oldPhotoDiv.style.zIndex = '0';
-    photoSwitch.classList.remove('photo_switch_upp');
-    photoSwitch.classList.add('photo_switch_down');
-  }
+// -------- клик по новому фото → запуск видео --------
+if (newPhoto && videoNEW) {
+    newPhoto.addEventListener('click', () => {
+        newPhoto.style.display = 'none';
+        videoNEW.load();
+        videoNEW.play().catch(e => console.error('NEW video:', e));
+    });
+    videoNEW.addEventListener('ended', () => {
+        newPhoto.style.display = 'block';
+    });
 }
 
+// -------- крестик закрытия --------
+if (crossBlackout) {
+    crossBlackout.onclick = () => {
+        if (blackout) blackout.classList.toggle("active");
+        crossBlackout.classList.toggle("active");
+        document.querySelectorAll(".text_content").forEach(el => el.classList.remove("active"));
+        if (bodyEl) bodyEl.style.overflow = "visible";
+    };
+}
 
-// Когда мышь выходит в область элемента
-newPhotoDiv.addEventListener('mouseenter', () => {
-  if (newPhotoDiv.style.zIndex == '1000'){
-    newPhotoDiv.classList.add('hovered'); }// добавляем класс
-  });
-oldPhotoDiv.addEventListener('mouseenter', () => {
-    if (oldPhotoDiv.style.zIndex == '1000'){
-      oldPhotoDiv.classList.add('hovered');} //
-  });
+// -------- переключатель old/new --------
+if (photoSwitch && newPhotoDiv && oldPhotoDiv) {
+    document.addEventListener('DOMContentLoaded', () => {
+        oldPhotoDiv.style.zIndex = '1000';
+    });
 
-  // Когда мышь выходит из области элемента
-  newPhotoDiv.addEventListener('mouseleave', () => {
-    newPhotoDiv.classList.remove('hovered'); // удаляем класс
-  });
-  oldPhotoDiv.addEventListener('mouseleave', () => {  
-    oldPhotoDiv.classList.remove('hovered');} //
-  );
+    photoSwitch.onclick = () => {
+        if (window.getComputedStyle(newPhotoDiv).zIndex === '1000') {
+            newPhotoDiv.style.zIndex = '0';
+            oldPhotoDiv.style.zIndex = '1000';
+            photoSwitch.classList.remove('photo_switch_down');
+            photoSwitch.classList.add('photo_switch_upp');
+        } else {
+            newPhotoDiv.style.zIndex = '1000';
+            oldPhotoDiv.style.zIndex = '0';
+            photoSwitch.classList.remove('photo_switch_upp');
+            photoSwitch.classList.add('photo_switch_down');
+        }
+    };
 
-// вставка фото  в панель
+    newPhotoDiv.addEventListener('mouseenter', () => {
+        if (newPhotoDiv.style.zIndex == '1000') newPhotoDiv.classList.add('hovered');
+    });
+    oldPhotoDiv.addEventListener('mouseenter', () => {
+        if (oldPhotoDiv.style.zIndex == '1000') oldPhotoDiv.classList.add('hovered');
+    });
+    newPhotoDiv.addEventListener('mouseleave', () => newPhotoDiv.classList.remove('hovered'));
+    oldPhotoDiv.addEventListener('mouseleave', () => oldPhotoDiv.classList.remove('hovered'));
+}
+
+// -------- клики по .clickable2 (если есть) --------
+const blackout2 = document.querySelector("#blackout2");
+const crossBlackout2 = document.querySelector("#cross_blackout2");
+document.querySelectorAll(".clickable2").forEach(el => {
+    el.onclick = () => {
+        if (blackout2) blackout2.classList.toggle("active");
+        if (crossBlackout2) crossBlackout2.classList.toggle("active");
+        if (h5Content) h5Content.innerHTML = el.getAttribute("data-place");
+
+        const place = el.getAttribute("data-place");
+        const id = place.split(" ").join("");
+        const textBlock = document.getElementById(id);
+        if (textBlock) textBlock.classList.add("active");
+
+        if (bodyEl) bodyEl.style.overflow = "hidden";
+    };
+});
+
+// ============ ЧАСТЬ ТОЛЬКО ДЛЯ history.html: «раньше/сейчас» ============
+
+const checkOld = document.getElementById('check_old');
+const checkNew = document.getElementById('check_new');
+
+// фоновые картинки для карточек
 document.querySelectorAll('.image-wrapper').forEach(div => {
-  const place = div.getAttribute('data-place'); // например, 'Проспект Ленина'
-console.log(place);
-  // Установка фона
-  div.style.backgroundImage = 'url("media/img/OLD/'+place+'_old.jpg")';
-  div.style.backgroundSize = 'cover'; // чтобы фото покрывало
-  div.style.backgroundPosition = 'center top'; // центрировать
-
+    const place = div.getAttribute('data-place');
+    if (!place) return;
+    div.style.backgroundImage = `url("../media/img/OLD/${place}_old.jpg")`;
+    div.style.backgroundSize = "cover";
+    div.style.backgroundPosition = "center top";
 });
 
-//для смены картинки старая новая на панели
-  	let checkOld = document.getElementById('check_old');
-let checkNew = document.getElementById('check_new');
-console.log(checkOld);
+if (checkOld && checkNew) {
+    checkOld.onclick = () => {
+        checkOld.classList.toggle('active');
+        checkNew.classList.toggle('active');
+        document.querySelectorAll('.image-wrapper').forEach(div => {
+            const place = div.getAttribute('data-place');
+            if (!place) return;
+            div.style.backgroundImage = `url("../media/img/OLD/${place}_old.jpg")`;
+            div.style.backgroundSize = "cover";
+            div.style.backgroundPosition = "center top";
+        });
+    };
 
-checkOld.onclick = () => {
-  checkOld.classList.toggle('active');
-  checkNew.classList.toggle('active');
-  document.querySelectorAll('.image-wrapper').forEach(div => {
-  const place = div.getAttribute('data-place'); // например, 'Проспект Ленина'
-console.log(place);
-  // Установка фона
-  div.style.backgroundImage = 'url("media/img/OLD/'+place+'_old.jpg")';
-  div.style.backgroundSize = 'cover'; // чтобы фото покрывало
-  div.style.backgroundPosition = 'center top'; // центрировать
-
-});
-};
-
-checkNew.onclick = () => {
-  checkNew.classList.toggle('active');
-  checkOld.classList.toggle('active');
- document.querySelectorAll('.image-wrapper').forEach(div => {
-  const place = div.getAttribute('data-place'); // например, 'Проспект Ленина'
-console.log(place);
-  // Установка фона
-  div.style.backgroundImage = 'url("media/img/NEW/'+place+'_new.jpg")';
-  div.style.backgroundSize = 'cover'; // чтобы фото покрывало
-  div.style.backgroundPosition = 'center top'; // центрировать
-
-});
-};
-
-
-//
+    checkNew.onclick = () => {
+        checkNew.classList.toggle('active');
+        checkOld.classList.toggle('active');
+        document.querySelectorAll('.image-wrapper').forEach(div => {
+            const place = div.getAttribute('data-place');
+            if (!place) return;
+            div.style.backgroundImage = `url("../media/img/NEW/${place}_new.jpg")`;
+            div.style.backgroundSize = "cover";
+            div.style.backgroundPosition = "center top";
+        });
+    };
+}

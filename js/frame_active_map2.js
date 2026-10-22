@@ -1,5 +1,3 @@
-
-
 const nameStreet = {
   1: 'Гомельский дворцово-парковый ансамбль',
   2: 'Башня обозрения',
@@ -12,4 +10,3 @@ const urlStreet = {
   3: 'https://yandex.by/maps/-/CLHoIEK1',
   4: 'https://yandex.by/maps/-/CLHoIQNN'
 }
-

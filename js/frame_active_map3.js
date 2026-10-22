@@ -1,5 +1,3 @@
-
-
 const nameStreet = {
   1: 'Памятник Хмельницкому',
   2: 'Вечный Огонь',
@@ -16,4 +14,3 @@ const urlStreet = {
   5: 'https://yandex.by/maps/-/CLHoMTjH',
   6: 'https://yandex.by/maps/-/CLHoM-2T'
 }
-

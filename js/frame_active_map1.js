@@ -1,6 +1,3 @@
-
-
-
 const nameStreet = {
   1: 'Дом Почты',
   2: 'Гомельский Цирк',
@@ -17,7 +14,3 @@ const urlStreet = {
   5: 'https://yandex.by/maps/-/CLHoMQLk',
   6: 'https://yandex.by/maps/-/CLHoIOyi'
 }
-
-
-
-

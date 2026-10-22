@@ -1,78 +1,70 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
-<head>
-<meta charset="UTF-8" />
-<title>Улицы</title>
-<link rel="stylesheet" type="text/css" href="../css/street.css">
 
-<style>
-  
- 
-</style>
+<head>
+  <meta charset="UTF-8" />
+  <title>Улицы</title>
+  <link rel="stylesheet" type="text/css" href="../css/street.css">
+  <!-- Icon -->
+  <link rel="icon" href="../media/icons/favicon.svg" type="image/x-icon">
 </head>
+
 <body>
 
-<a id="formap"></a>
+  <a id="formap"></a>
 
-<div class="wrapp">
-<a href="../index.html#map4"><div id="photo_switch" class="photo_switch_upp"></div></a>
+  <div class="wrapp">
+    <a href="../index.html#map4">
+      <div id="photo_switch" class="photo_switch_upp"></div>
+    </a>
     <header>
       <h3></h3>
     </header>
-	<div class="wrapper">
-    <main class="container" id="container">
-      <div id="image-wrapper1" class="active">
-        <img src="" id="image1" class="active" alt="Картинка 1" />
-		<video id="video1" >
-		 <source id="videoPlayer1" src="" type="video/mp4">
-		 </video>
-		</div>
-	  <div id="image-wrapper2">
-        <img src="" id="image2" alt="Картинка 2" />
-		<video id="video2"  >
-			 <source id="videoPlayer2" src="" type="video/mp4">
-		</video>
-      </div>
-      <!-- Маска -->
-      <div id="mask">
-        <img src="" alt="Частичная картинка"  class="mask"/>
-      </div>
-    </main>
-    <footer>
-      <div class="wrapper_button">
-        <!-- Кнопки переключения -->
-          <button id="showImage1" class="active">В ПРОШЛОМ</button> 
+    <div class="wrapper">
+      <main class="container" id="container">
+        <div id="image-wrapper1" class="active">
+          <img src="" id="image1" class="active" alt="Картинка 1" />
+          <video id="video1">
+            <source id="videoPlayer1" src="" type="video/mp4">
+          </video>
+        </div>
+        <div id="image-wrapper2">
+          <img src="" id="image2" alt="Картинка 2" />
+          <video id="video2">
+            <source id="videoPlayer2" src="" type="video/mp4">
+          </video>
+        </div>
+        <!-- Маска -->
+        <div id="mask">
+          <img src="" alt="Частичная картинка" class="mask" />
+        </div>
+      </main>
+      <footer>
+        <div class="wrapper_button">
+          <!-- Кнопки переключения -->
+          <button id="showImage1" class="active">В ПРОШЛОМ</button>
           <!--Кнопка для активации маски-->
-         <div class="range">
-		       <button id="toggleMask">МАШИНА ВРЕМЕНИ</button>
-		       <input type="range" id="sizeRange" min="0" max="100" value="50" />
-		     </div> 
-		  
-        <button id="showImage2">НАШИ ДНИ</button>
-      </div>
-        
-      <div class="click">
-        <!--<a href="../index.html#map4" id="back">
-		  </a>-->
-      <a href="" id="urlMap" target="_blank"></a></div>
-		  
-    </footer>
-	</div>
-   </div>
+          <div class="range">
+            <button id="toggleMask">МАШИНА ВРЕМЕНИ</button>
+            <input type="range" id="sizeRange" min="0" max="100" value="50" />
+          </div>
 
+          <button id="showImage2">НАШИ ДНИ</button>
+        </div>
 
+        <div class="click">
 
+          <a href="" id="urlMap" target="_blank"></a>
+        </div>
 
+      </footer>
+    </div>
+  </div>
 
-
-
- <script src="../js/frame_active_mobil.js"></script>
-<script src="../js/frame_active_map4.js"></script>
-<script src="../js/frame_active_map.js"></script>
-
+  <script src="../js/frame_active_mobil.js"></script>
+  <script src="../js/frame_active_map4.js"></script>
+  <script src="../js/frame_active_map.js"></script>
 
 </body>
+
 </html>
-  
-  
